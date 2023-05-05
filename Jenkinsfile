@@ -8,7 +8,7 @@ pipeline {
   stages {
     stage('checkout code') {
       steps {
-        echo 'will checkout code'
+        git(url: 'https://github.com/lidorg-dev/Flask-Example.git', branch: 'main', changelog: true, poll: true)
       }
     }
 
