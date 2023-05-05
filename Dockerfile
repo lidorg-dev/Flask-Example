@@ -1,6 +1,6 @@
 FROM python
 
-WORKDDIR /src/app
+WORKDIR /src/app
 COPY . .
 RUN pip install -r requirements.txt
 EXPOSE 6969
