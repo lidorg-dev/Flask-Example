@@ -14,7 +14,7 @@ pipeline {
 
     stage('Build') {
       steps {
-        echo 'now we will build'
+        sh 'docker build -t flask-example:${env.BUILD_ID} .'
       }
     }
 
