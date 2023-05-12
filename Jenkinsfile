@@ -14,7 +14,7 @@ pipeline {
 
     stage('Build') {
       steps {
-        sh 'docker build -t flask-example:$BUILD_ID .'
+        sh 'docker build -t lidorlg/flask-example:$BUILD_ID .'
       }
     }
 
@@ -33,7 +33,7 @@ pipeline {
 
     stage('Push to DockerHub') {
       steps {
-        echo 'final step push to docker hub '
+        sh 'docker push lidorlg/flask-example:$BUILD_ID'
       }
     }
 
