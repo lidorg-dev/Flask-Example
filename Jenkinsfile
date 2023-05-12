@@ -20,11 +20,7 @@ pipeline {
 
     stage('Test') {
       steps {
-        sh '''docker run -d -p 6969:6969 --name flask-demo lidorlg/flask-example:$BUILD_ID
-
-
-
-'''
+        sh 'docker run -d -p 6969:6969 --name flask-demo lidorlg/flask-example:$BUILD_ID '
         sh 'sleep 5'
         sh 'curl localhost:6969'
         sh 'docker stop flask-demo && docker rm flask-demo'
@@ -34,7 +30,7 @@ pipeline {
     stage('Push to DockerHub') {
       steps {
         withCredentials(bindings:[usernamePassword(credentialsId: 'docker-hub', passwordVariable: 'pass', usernameVariable: 'user')]) {
-        sh 'docker login -u $user -p $pass '
+        sh "docker login -u $user -p $pass"
         sh 'docker push lidorlg/flask-example:$BUILD_NUMBER'
         }
       }
