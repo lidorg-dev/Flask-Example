@@ -33,7 +33,8 @@ pipeline {
 
     stage('Push to DockerHub') {
       steps {
-        sh 'docker push lidorlg/flask-example:$BUILD_ID'
+        sh 'docker login -u $user -p $pass '
+        sh 'docker push lidorlg/flask-example:$BUILD_NUMBER'
       }
     }
 
