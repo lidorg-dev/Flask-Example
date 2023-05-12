@@ -20,7 +20,7 @@ pipeline {
 
     stage('Test') {
       steps {
-        sh '''docker run -d -p 6969:6969 --name flask-demo flask-example:$BUILD_ID
+        sh '''docker run -d -p 6969:6969 --name flask-demo lidorlg/flask-example:$BUILD_ID
 
 
 
