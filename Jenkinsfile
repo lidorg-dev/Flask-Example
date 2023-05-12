@@ -33,8 +33,10 @@ pipeline {
 
     stage('Push to DockerHub') {
       steps {
+        withCredentials(bindings:[usernamePassword(credentialsId: 'docker-hub', passwordVariable: 'pass', usernameVariable: 'user')]) {
         sh 'docker login -u $user -p $pass '
         sh 'docker push lidorlg/flask-example:$BUILD_NUMBER'
+        }
       }
     }
 
