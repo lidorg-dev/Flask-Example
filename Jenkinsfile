@@ -12,5 +12,23 @@ pipeline {
       }
     }
 
+    stage('Build') {
+      steps {
+        sh 'echo "hello"'
+      }
+    }
+
+    stage('Test') {
+      steps {
+        sh 'echo "hello"'
+      }
+    }
+
+    stage('Package') {
+      steps {
+        sh 'echo "hello"'
+      }
+    }
+
   }
 }
