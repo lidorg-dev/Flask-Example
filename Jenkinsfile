@@ -6,9 +6,9 @@ pipeline {
 
   }
   stages {
-    stage('Build') {
+    stage('cehckokut code') {
       steps {
-        sh 'echo "hello"'
+        git(url: 'https://github.com/lidorg-dev/Flask-Example.git', branch: 'main', changelog: true, poll: true)
       }
     }
 
