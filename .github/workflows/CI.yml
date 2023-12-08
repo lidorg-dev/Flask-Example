@@ -18,6 +18,7 @@ jobs:
     - name: Build the Docker image
       run: "docker build . --file Dockerfile --tag lidorlg/flask-example-new:${{ github.sha }}"
   TEST:
+    needs: BUILD
     runs-on: ubuntu-latest
     steps:
     - name: Test the Docker Image
@@ -25,6 +26,7 @@ jobs:
     - run: "sleep 5 && curl localhost:6969"
     - run: "docker stop flask && docker rm flask"
   PUSH:
+    needs: [BUILD, TEST]
     runs-on: ubuntu-latest
     steps:
     - name: Login to Docker Hub
