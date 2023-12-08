@@ -16,8 +16,15 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: "docker build . --file Dockerfile --tag flask-example:${{ github.sha }}"
+      run: "docker build . --file Dockerfile --tag lidorlg/flask-example-new:${{ github.sha }}"
     - name: Test the Docker Image
-      run: "docker run -itd -p 6969:6969 --name flask flask-example:${{ github.sha }}"
+      run: "docker run -itd -p 6969:6969 --name flask lidorlg/flask-example-new:${{ github.sha }}"
     - run: "sleep 5 && curl localhost:6969"
     - run: "docker stop flask && docker rm flask"
+    - name: Login to Docker Hub
+      uses: docker/login-action@v3
+      with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+    - name: Push Docker Image
+      run: "docker push lidorlg/flask-example-new:${{ github.sha }}"
