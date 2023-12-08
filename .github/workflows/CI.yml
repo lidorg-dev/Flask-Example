@@ -17,3 +17,7 @@ jobs:
     - uses: actions/checkout@v3
     - name: Build the Docker image
       run: "docker build . --file Dockerfile --tag flask-example:${{ github.sha }}"
+    - name: Test the Docker Image
+      run: "docker run -itd -p 6969:6969 --name flask flask-example:${{ github.sha }}"
+    - run: "sleep 5 && curl localhost:6969"
+    - run: "docker stop flask && docker rm flask"
