@@ -6,7 +6,7 @@ pipeline {
 
   }
   stages {
-    stage('cehckokut code') {
+    stage('checkout code') {
       steps {
         git(url: 'https://github.com/lidorg-dev/Flask-Example.git', branch: 'main', changelog: true, poll: true)
       }
@@ -14,7 +14,7 @@ pipeline {
 
     stage('Build') {
       steps {
-        sh 'echo "hello"'
+        sh 'docker build . -t flask-example:latest'
       }
     }
 
