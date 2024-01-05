@@ -16,7 +16,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: "docker build . --file Dockerfile --tag lidorlg/flask-example-new:${{ github.sha }}"
+      run: "docker build . --file Dockerfile --tag lidorlg/flask-example-new:${{ github.run_number }}"
     - name: Setup JFrog CLI
       uses: jfrog/setup-jfrog-cli@v3
       env:
@@ -25,7 +25,7 @@ jobs:
 
     - name: Build Tag and push Docker Image
       env:
-        IMAGE_NAME: devopsacademy2.jfrog.io/example-demo-virtual/jfrog-docker-example-image:${{ github.run_number }}
+        IMAGE_NAME: devopsacademy2.jfrog.io/example-demo-virtual/flask-example-new:${{ github.run_number }}
       run: |
           jf docker build -t $IMAGE_NAME .
           jf docker push $IMAGE_NAME
