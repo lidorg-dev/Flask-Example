@@ -19,7 +19,10 @@ pipeline {
     }
 
     stage('Push') {
+      withCredentials([usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+
       steps {
+        sh "docker login -u $USERNAME -p $PASSWORD"
         sh "docker push lidorlg/flask-demo-int:${env.BUILD_ID}"
       }
     }
