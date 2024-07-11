@@ -6,9 +6,15 @@ pipeline {
 
   }
   stages {
-    stage('checkout-code') {
+    stage('checkout Code') {
       steps {
-        sh 'echo "checkout"'
+        git(url: 'https://github.com/lidorg-dev/Flask-Example.git', branch: 'main', changelog: true, poll: true)
+      }
+    }
+
+    stage('Build') {
+      steps {
+        sh 'docker build .'
       }
     }
 
