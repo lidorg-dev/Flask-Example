@@ -8,7 +8,7 @@ pipeline {
   stages {
     stage('checkout Code') {
       steps {
-        git(url: 'https://github.com/lidorg-dev/Flask-Example.git', branch: 'main', changelog: true, poll: true)
+        checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'github-ssh', url: 'git@github.com:lidorg-dev/Flask-Example.git']])
       }
     }
 
