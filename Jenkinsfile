@@ -18,5 +18,11 @@ pipeline {
       }
     }
 
+    stage('Push') {
+      steps {
+        sh 'docker push lidorlg/flask-demo-int:${env.BUILD_ID}'
+      }
+    }
+
   }
 }
